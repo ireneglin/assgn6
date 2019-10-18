@@ -92,7 +92,7 @@ li {
 }
 
 /* unvisited link */
-header a:link, a:visited {
+header a:link, header a:visited {
   color: white;
   text-decoration: none;
 }
@@ -454,4 +454,15 @@ h4.subtotalPrice{
 
 .shoppingCartPrice {
 	padding: 0;
+}
+
+.editDeleteOptions {
+	text-decoration: none;
+	color: black;
+}
+
+.editDeleteOptions:hover {
+	background-color: #404040;
+	color: white;
+	padding: 1px;
 }
