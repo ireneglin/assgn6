@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+	    <title>Muddy Paws</title>
+	    <meta charset="UTF-8">
+	    <!-- styles -->
+	    <link rel="stylesheet" type="text/css" href="../flexStyle.css">
+	    <!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	</head>
+
+	<body>
+
+		<!--navigation html-->
+		<header class="headerRow">
+			    <a id="logo" href="index.html">Muddy Paws</a>
+			    <nav class="col-3 mainNav">
+			    	<ul class="mainNav">
+				        <li><a class="mainNav" href="index.html">About</a></li>
+				        <li><a href="products.html">Products</a></li>
+				        <li><a href="index.html">Contact</a></li>
+			        </ul>
+			    </nav>
+			    <nav class="col-3 secNav">
+			    	<ul class="secNav">
+				        <li class="snItem"><i class="material-icons">search</i></li>
+				        <li class="snItem"><a href="#login"><i class="material-icons">person</i></a></li>
+				        <li class="snItem"><a class="active" href="#cart"><i class="material-icons">shopping_cart</i></a></li>
+				    </ul>
+			    </nav>
+		</header>
+
+		<!--shopping cart items view html-->
+		<h2 class="title">Shopping Cart</h2>
+		<div class="row subtotalr">
+			<div class="subtotal">
+				<h4 class="st">Subtotal: $320.00</h4>
+				<button class="checkoutButton">Proceed to checkout</button>
+			</div>
+		</div>
+
+		<div class="row allCartItems">
+			<!--items in cart-->
+			<div class="cart mainInfo">
+				<div class="row">
+				    <div class="itemCheckoutPreview">
+						<img alt="img" class="leftImg" src="../imgs/preview.png">
+					</div>
+					<div class="cartrtxt item">
+						<h3>Dog Harness</h3>
+						<p class="shoppingCartTxt">Color: strawberry</p>
+						<p class="shoppingCartTxt">Size: small</p>
+					</div>
+					<div class="scQnty">
+						<h3 class="shoppingCartPrice">$80.00</h3>
+						<label class="shoppingCartTxt">Quantity:</label>
+						<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+						<p class="shoppingCartTxt">edit / delete</p>
+					</div>
+			    </div>
+			    <div class="row">
+				    <div class="itemCheckoutPreview">
+						<img alt="img" class="leftImg" src="../imgs/preview.png">
+					</div>
+					<div class="cartrtxt item">
+						<h3>Dog Harness</h3>
+						<p class="shoppingCartTxt">Color: strawberry</p>
+						<p class="shoppingCartTxt">Size: small</p>
+					</div>
+					<div class="scQnty">
+						<h3 class="shoppingCartPrice">$80.00</h3>
+						<label class="shoppingCartTxt">Quantity:</label>
+						<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+						<p class="shoppingCartTxt">edit / delete</p>
+					</div>
+			    </div>
+				<div class="row">
+				    <div class="itemCheckoutPreview">
+						<img alt="img" class="leftImg" src="../imgs/preview.png">
+					</div>
+					<div class="cartrtxt item">
+						<h3>Dog Harness</h3>
+						<p class="shoppingCartTxt">Color: strawberry</p>
+						<p class="shoppingCartTxt">Size: small</p>
+					</div>
+					<div class="scQnty">
+						<h3 class="shoppingCartPrice">$80.00</h3>
+						<label class="shoppingCartTxt">Quantity:</label>
+						<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+						<p class="shoppingCartTxt"><a href="">edit<a> / delete</p>
+					</div>
+			    </div>
+			</div>
+
+			<!--subtotal view-->
+			
+		</div>
+		<button id="secCheckoutButton" class="checkoutButton">Proceed to checkout</button>
+	</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+	    <title>Muddy Paws</title>
+	    <meta charset="UTF-8">
+	    <!-- styles -->
+	    <link rel="stylesheet" type="text/css" href="flexStyle.css">
+	    <!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	</head>
+
+	<body>
+
+		<!--navigation html-->
+		<header class="headerRow">
+			    <a id="logo" href="index.html">Muddy Paws</a>
+			    <nav class="col-3 mainNav">
+			    	<ul class="mainNav">
+				        <li><a class="mainNav" href="index.html">About</a></li>
+				        <li><a class="current" href="products.html">Products</a></li>
+				        <li><a href="index.html">Contact</a></li>
+			        </ul>
+			    </nav>
+			    <nav class="col-3 secNav">
+			    	<ul class="secNav">
+				        <li class="snItem"><i class="material-icons">search</i></li>
+				        <li class="snItem"><a href="#login"><i class="material-icons">person</i></a></li>
+				        <li class="snItem"><a href="A6/cart.html"><i class="material-icons">shopping_cart</i></a></li>
+				    </ul>
+			    </nav>
+		</header>
+
+		<!--product information html-->
+		<div class="row previewBox">
+			<div>
+				<img alt="img" class="leftpImg lpitop" src="imgs/preview.png">
+				<img alt="img" class="leftpImg" src="imgs/preview.png">
+				<img alt="img" class="leftpImg" src="imgs/preview.png">
+			</div>
+			<div class="col-2">
+				<img alt="img" class="leftImg" src="imgs/main.png">
+			</div>
+			<div class="col-2 rtxt mainInfo">
+				<h2>Dog Harness</h2>
+				<h4>$80.00</h4>
+				<div class="starContainer">
+					<p>Reviews (12):</p>
+					<ul class="revStars">
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star_border</i></li>
+				    </ul>
+				</div>
+				<p>Lorem ipsum dolor sit mi augue amet, consectetur adipiscing elit. Nam finibus metus ullamcorper leo condimentum, et mi augue porttitor </p><br>
+
+				<div class="color">
+					<label>Color:</label>
+					<select>
+						<option>Strawberry</option>
+						<option>Blackberry</option>
+						<option>Crazyberry</option>
+						<option>Fire Orange</option>
+					</select><br>
+				</div>
+
+				<div class="size">
+					<label>Size:</label>
+					<select>
+						<option>Tiny</option>
+						<option>Small</option>
+						<option>Medium</option>
+						<option>Large</option>
+					</select><br>
+				</div>
+
+				<div class="qnty">
+					<label>Quantity:</label>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+				<button>Add to cart</button>
+			</div>
+		</div>
+
+		<h3 class="productDetails">Frequently bought together</h3>
+		<div class="fbtRow" id="new">
+			<div class="individualProduct col-3">
+				<img alt="img" class="fbtImg" src="imgs/catBP.png">
+				<h3>Cat Backpack</h3>
+			</div>
+			<div class="individualProduct col-3">
+				<img alt="img" class="fbtImg" src="imgs/gpsCollar.png">
+				<h3>GPS Tracker Collar</h3>
+			</div>
+			<div class="individualProduct col-3">
+				<img alt="img" class="fbtImg" src="imgs/waterHarness.png">
+				<h3>Water Attachment</h3>
+			</div>
+			<div class="individualProduct col-3">
+				<img alt="img" class="fbtImg" src="imgs/waterHarness.png">
+				<h3>Water Attachment</h3>
+			</div>
+		</div>
+
+		<!-- review section -->
+		<div class="revContainer">
+			<h3 class="productDetails">Reviews (12):</h3>
+				<ul class="revStars">
+			        <li class="star"><i class="material-icons star">star</i></li>
+			        <li class="star"><i class="material-icons star">star</i></li>
+			        <li class="star"><i class="material-icons star">star</i></li>
+			        <li class="star"><i class="material-icons star">star</i></li>
+			        <li class="star"><i class="material-icons star">star_border</i></li>
+			    </ul>
+		</div>
+
+		<div class="userRevs">
+			<div class="row">
+			    <div class="col-2 user">
+					<img alt="img" class="leftImg" src="imgs/user1.png">
+					<h3>User 1</h3>
+				</div>
+				<div class="col-2 rtxt rev">
+					<ul class="revStars">
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star_border</i></li>
+				    </ul>
+					<h3>Best Harness EVER but....</h3>
+					<p>Lorem ipsum dolor sit mi augue amet, consectetur adipiscing elit. Nam finibus metus ullamcorper leo condimentum, et mi augue porttitor</p>
+				</div>
+		    </div>
+
+	    
+		    <div class="row">
+			    <div class="col-2 user">
+					<img alt="img" class="leftImg" src="imgs/user2.png">
+					<h3>User 2</h3>
+				</div>
+				<div class="col-2 rtxt rev">
+					<ul class="revStars">
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star_border</i></li>
+				    </ul>
+					<h3>LOVE IT!</h3>
+					<p>Lorem ipsum dolor sit mi augue amet, consectetur adipiscing elit. Nam finibus metus ullamcorper leo condimentum, et mi augue porttitor</p>
+				</div>
+		    </div>
+			<div class="row">
+			    <div class="col-2 user">
+					<img alt="img" class="leftImg" src="imgs/user1.png">
+					<h3>User 3</h3>
+				</div>
+				<div class="col-2 rtxt rev">
+					<ul class="revStars">
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star</i></li>
+				        <li class="star"><i class="material-icons star">star_border</i></li>
+				    </ul>
+					<h3>Great purchase</h3>
+					<p>Lorem ipsum dolor sit mi augue amet, consectetur adipiscing elit. Nam finibus metus ullamcorper leo condimentum, et mi augue porttitor</p>
+				</div>
+		    </div>
+		    <div class="row">
+					<h3>Show 9 more reviews</h3><br>
+		 	</div>
+		 	<div class="row arrow">
+		 		<i class="material-icons md-48">keyboard_arrow_down</i>
+		 	</div>
+		    <button id="rev">Write a review</button>
+	    </div>
+	</body>
+
+</html>

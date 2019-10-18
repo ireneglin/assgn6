@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+	    <title>Muddy Paws</title>
+	    <meta charset="UTF-8">
+	    <!-- styles -->
+	    <link rel="stylesheet" type="text/css" href="flexStyle.css">
+	    <!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	</head>
+
+	<body>
+
+		<!--navigation html-->
+		<header class="headerRow">
+			    <a id="logo" href="index.html">Muddy Paws</a>
+			    <nav class="col-3 mainNav">
+			    	<ul class="mainNav">
+				        <li><a class="mainNav" href="index.html">About</a></li>
+				        <li><a class="current" href="products.html">Products</a></li>
+				        <li><a href="index.html">Contact</a></li>
+			        </ul>
+			    </nav>
+			    <nav class="col-3 secNav">
+			    	<ul class="secNav">
+				        <li class="snItem"><i class="material-icons">search</i></li>
+				        <li class="snItem"><a href="#login"><i class="material-icons">person</i></a></li>
+				        <li class="snItem"><a href="#cart"><i class="material-icons">shopping_cart</i></a></li>
+				    </ul>
+			    </nav>
+		</header>
+
+		<!--<h2 id="filter">Products</h2>-->
+
+		<div class="row">
+			<!--col for filters-->
+			<div class="col-2 filter">
+				<div class="filterBox">
+					<h2>Filter</h2>
+					<form action="/action_page.php">
+						<p>Animal</p>
+						<input type="checkbox"> Cat<br>
+						<input type="checkbox"> Dog<br>
+						
+						<p>Size</p>
+						<input type="checkbox"> Tiny<br>
+						<input type="checkbox"> Small<br>
+						<input type="checkbox"> Medium<br>
+						<input type="checkbox"> Large<br>
+						
+						<p>Color</p>
+						<input type="checkbox"> Strawberry<br>
+						<input type="checkbox"> Blackberry<br>
+						<input type="checkbox"> Crazyberry<br>
+						<input type="checkbox"> Fire Orange<br>
+
+						<p>Sort by:</p>
+						<select>
+							<option>Bestsellers</option>
+							<option>Bruno's Favourites</option>
+						</select>
+
+					</form>
+				</div>
+			</div>
+
+			<!--col for product grid-->
+			<div class="col-2 allPs">
+				<div class="row prow productList">
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/catBP.png">
+						<p class="pInfo">Cat Harness</p>
+						<p class="pInfo">$80.00</p>
+					</div>
+					<div class="individualProduct col-3">
+						<a href="dogHarness.html"><img alt="img" class="pImg" src="imgs/dogHarness.png"></a>
+						<a href="dogHarness.html"><p class="pInfo">Dog Harness</p></a>
+						<p class="pInfo">$80.00</p>
+					</div>
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/waterHarness.png">
+						<p class="pInfo">Water Attachment</p>
+						<p class="pInfo">$20.00</p>
+					</div>
+				</div>
+				<div class="row prow productList">
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/catBP.png">
+						<p class="pInfo">Cat Harness</p>
+						<p class="pInfo">$80.00</p>
+					</div>
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/gpsCollar.png">
+						<p class="pInfo">GPS Tracker Collar</p>
+						<p class="pInfo">$120.00</p>
+					</div>
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/waterHarness.png">
+						<p class="pInfo">Water Attachment</p>
+						<p class="pInfo">$20.00</p>
+					</div>
+				</div>
+				<div class="row prow productList">
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/catBP.png">
+						<p class="pInfo">Cat Harness</p>
+						<p class="pInfo">$80.00</p>
+					</div>
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/gpsCollar.png">
+						<p class="pInfo">GPS Tracker Collar</p>
+						<p class="pInfo">$120.00</p>
+					</div>
+					<div class="individualProduct col-3">
+						<img alt="img" class="pImg" src="imgs/waterHarness.png">
+						<p class="pInfo">Water Attachment</p>
+						<p class="pInfo">$20.00</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
