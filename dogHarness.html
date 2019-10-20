@@ -8,11 +8,33 @@
 	    <!-- fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script type="text/javascript" src="cart.js"></script>
 	</head>
 
 	<body>
 
 		<!--navigation html-->
+		<header class="headerRow">
+				<div class="headerRow2">
+				</div>
+				    <a id="logo" href="index.html">Muddy Paws</a>
+				    <nav class="col-3 mainNav">
+				    	<ul class="mainNav">
+					        <li><a class="mainNav" href="index.html">About</a></li>
+					        <li><a class="current" href="products.html">Products</a></li>
+					        <li><a href="index.html">Contact</a></li>
+				        </ul>
+				    </nav>
+				    <nav class="col-3 secNav">
+				    	<ul class="secNav">
+					        <li class="snItem"><i class="material-icons">search</i></li>
+					        <li class="snItem"><a href="#login"><i class="material-icons">person</i></a></li>
+					        <span class="iconStack">
+					        	<li class="snItem"><a href="cart.html"><i class="material-icons">shopping_cart</i></a></li>
+					        </span>
+					    </ul>
+				    </nav>
+		</header>
 		<header class="headerRow">
 			    <a id="logo" href="index.html">Muddy Paws</a>
 			    <nav class="col-3 mainNav">
@@ -34,12 +56,12 @@
 		<!--product information html-->
 		<div class="row previewBox">
 			<div>
-				<img alt="img" class="leftpImg lpitop" src="imgs/preview.png">
-				<img alt="img" class="leftpImg" src="imgs/preview.png">
-				<img alt="img" class="leftpImg" src="imgs/preview.png">
+				<img alt="img" class="leftpImg leftpImgtop" id="alt1" onclick="changeMainProductImg(this)" src="imgs/preview.png">
+				<img alt="img" class="leftpImg" id="alt2" onclick="changeMainProductImg(this)" src="imgs/preview.png">
+				<img alt="img" class="leftpImg" id="alt3" onclick="changeMainProductImg(this)" src="imgs/preview.png">
 			</div>
 			<div class="col-2">
-				<img alt="img" class="leftImg" src="imgs/main.png">
+				<img alt="img" class="leftImg" id="mainProductImg" src="imgs/main.png">
 			</div>
 			<div class="col-2 rtxt mainInfo">
 				<h2>Dog Harness</h2>
@@ -58,7 +80,7 @@
 
 				<div class="color">
 					<label>Color:</label>
-					<select>
+					<select id="colorDropMenu">
 						<option>Strawberry</option>
 						<option>Blackberry</option>
 						<option>Crazyberry</option>
@@ -68,7 +90,7 @@
 
 				<div class="size">
 					<label>Size:</label>
-					<select>
+					<select id="sizeDropMenu">
 						<option>Tiny</option>
 						<option>Small</option>
 						<option>Medium</option>
@@ -78,14 +100,14 @@
 
 				<div class="qnty">
 					<label>Quantity:</label>
-					<select>
+					<select id="qntyDropMenu">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
 					</select>
 				</div>
-				<button>Add to cart</button>
+				<button onclick="addToCart()">Add to cart</button>
 			</div>
 		</div>
 
