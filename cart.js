@@ -8,8 +8,8 @@ update quantity
 add to cart
 show new cart item
 */
-//global variable for cart items
-var cartItemsQnty = 0;
+//global variable for cart item count
+var cartItemCount = 0;
 
 
 //constructor for shoppingCartItem
@@ -84,10 +84,15 @@ function addToCart() {
 	console.log("itemAdded 1: " + itemAdded.quantity);*/
 	//update the number above cart icon in menu to reflect quantity of items added to it
 
-	cartItemsQnty += parseInt(quantity);
-	//console.log("cartItemsQnty: 1 " + cartItemsQnty);
-	document.getElementById("shoppingCartCount").innerHTML = cartItemsQnty;
-	//console.log("toString: " + cartItemsQnty);
+	cartItemCount
+ += parseInt(quantity);
+	//console.log("cartItemCount
+: 1 " + cartItemCount
+);
+	document.getElementById("shoppingCartCount").innerHTML = cartItemCount
+;
+	//console.log("toString: " + cartItemCount
+);
 }
 
 //show new cart item
