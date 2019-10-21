@@ -31,10 +31,6 @@ h3 {
 	align-content: center;
 }
 
-.headerRow2 {
-	background-color: grey;
-}
-
 #logo {
 	margin-right: auto;
 	margin-left: 178px;
@@ -469,4 +465,29 @@ h4.subtotalPrice{
 	background-color: #404040;
 	color: white;
 	padding: 1px;
+}
+
+/*------------------------------------
+updating shopping cart icon with quantity*/
+.iconStack {
+  position: relative;
+  //display: inline-block;
+  /*width: 2em;
+  height: 5em;
+  line-height: 4em;*/
+  vertical-align: middle;
+}
+.iconStack1,
+.iconStack2 {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.iconStack1 {
+  line-height: inherit;
+}
+.iconStack2 {
+  font-size: 1em;
+  bottom: 30px; 
 }

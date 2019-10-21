@@ -8,6 +8,9 @@ update quantity
 add to cart
 show new cart item
 */
+//global variable for cart items
+var cartItemsQnty = 0;
+
 
 //constructor for shoppingCartItem
 function shoppingCartItem (color, size, quantity) {
@@ -68,16 +71,23 @@ function updateCartIcon() {
 //add to cart
 //check what is selected for color, size, and quantity
 function addToCart() {
-	console.log("getColorSel strawberry: " + getColorSelected());
+	/*console.log("getColorSel strawberry: " + getColorSelected());
 	console.log("getSizeSel tiny: " + getSizeSelected());
-	console.log("getQntySel 1: " + getQntySelected());
+	console.log("getQntySel 1: " + getQntySelected());*/
 	var color = getColorSelected();
 	var size = getSizeSelected();
 	var quantity = getQntySelected();
 	var itemAdded = new shoppingCartItem(color, size, quantity);
-	console.log("itemAdded strawberry: " + itemAdded.color);
+
+	/*console.log("itemAdded strawberry: " + itemAdded.color);
 	console.log("itemAdded tiny: " + itemAdded.size);
-	console.log("itemAdded 1: " + itemAdded.quantity);
+	console.log("itemAdded 1: " + itemAdded.quantity);*/
+	//update the number above cart icon in menu to reflect quantity of items added to it
+
+	cartItemsQnty += parseInt(quantity);
+	//console.log("cartItemsQnty: 1 " + cartItemsQnty);
+	document.getElementById("shoppingCartCount").innerHTML = cartItemsQnty;
+	//console.log("toString: " + cartItemsQnty);
 }
 
 //show new cart item
