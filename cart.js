@@ -41,6 +41,7 @@ function changeMainProductImg(elementClicked) {
 		//rm boarder from previously selected img thumbnail
 		if (thumbnail1.classList.contains("selectedThumbnail")) {
 			thumbnail1.classList.remove("selectedThumbnail");
+			thumbnail1.classList.add("leftpImg");
 		}
 		else if (thumbnail3.classList.contains("selectedThumbnail")) {
 			thumbnail3.classList.remove("selectedThumbnail");
@@ -55,6 +56,7 @@ function changeMainProductImg(elementClicked) {
 		}
 		else if (thumbnail1.classList.contains("selectedThumbnail")) {
 			thumbnail1.classList.remove("selectedThumbnail");
+			thumbnail1.classList.add("leftpImg");
 		}
 		document.getElementById("alt3").className += " selectedThumbnail";
 	}
