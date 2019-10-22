@@ -1,12 +1,12 @@
 /* js for product details page (dogHarness.html) and cart.html to 
 reflect user changes while editing item options and adding to cart
 Task:
-switch main img
-update color
-update size
-update quantity
-add to cart
-show new cart item
+switch main product img based on thumbnail selection
+check what color is selected and update object
+check size is selected and update object
+check quantity is selected and update object
+add item to cart
+show new cart item count above cart icon in menu
 */
 //global variable for cart item count
 var cartItemCount = 0;
@@ -19,17 +19,20 @@ function shoppingCartItem (color, size, quantity) {
 	this.quantity = quantity
 }
 
-//switch picture
+//switch picture when corresponding thumbnail is clicked
 function changeMainProductImg(elementClicked) {
 	console.log(elementClicked.id);
 	if (elementClicked.id == "alt1") {
 		document.getElementById("mainProductImg").src = "imgs/mainProductImg1.png";
+		document.getElementById("alt1").className = "selectedThumbnail";
 	}
 	else if (elementClicked.id == "alt2") {
 		document.getElementById("mainProductImg").src = "imgs/mainProductImg2.png";
+		document.getElementById("alt2").className = "selectedThumbnail";
 	}
 	else {
 		document.getElementById("mainProductImg").src = "imgs/mainProductImg3.png";
+		document.getElementById("alt3").className = "selectedThumbnail";
 	}
 }
 
@@ -61,15 +64,10 @@ function getQntySelected() {
 	return options[selectedQnty].text;
 }
 
-//update main menu cart icon with quantity of items in cart
-function updateCartIcon() {
-	//check quantity
-	//update existing cart number with quantity
-	//update cart icon with new quantity
-}
 
-//add to cart
-//check what is selected for color, size, and quantity
+/*add to cart
+check what is selected for color, size, and quantity
+update main menu cart icon with quantity of items in cart*/
 function addToCart() {
 	/*console.log("getColorSel strawberry: " + getColorSelected());
 	console.log("getSizeSel tiny: " + getSizeSelected());
@@ -79,20 +77,9 @@ function addToCart() {
 	var quantity = getQntySelected();
 	var itemAdded = new shoppingCartItem(color, size, quantity);
 
-	/*console.log("itemAdded strawberry: " + itemAdded.color);
-	console.log("itemAdded tiny: " + itemAdded.size);
-	console.log("itemAdded 1: " + itemAdded.quantity);*/
 	//update the number above cart icon in menu to reflect quantity of items added to it
-
-	cartItemCount
- += parseInt(quantity);
-	//console.log("cartItemCount
-: 1 " + cartItemCount
-);
-	document.getElementById("shoppingCartCount").innerHTML = cartItemCount
-;
-	//console.log("toString: " + cartItemCount
-);
+	cartItemCount += parseInt(quantity);
+	document.getElementById("shoppingCartCount").innerHTML = cartItemCount;
 }
 
-//show new cart item
+//show new cart item in shopping cart page
