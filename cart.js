@@ -21,18 +21,42 @@ function shoppingCartItem (color, size, quantity) {
 
 //switch picture when corresponding thumbnail is clicked
 function changeMainProductImg(elementClicked) {
-	console.log(elementClicked.id);
+	var thumbnail1 = document.getElementById("alt1");
+	var thumbnail2 = document.getElementById("alt2");
+	var thumbnail3 = document.getElementById("alt3");
+
 	if (elementClicked.id == "alt1") {
 		document.getElementById("mainProductImg").src = "imgs/mainProductImg1.png";
+		//rm boarder from previously selected img thumbnail
+		if (thumbnail2.classList.contains("selectedThumbnail")) {
+			thumbnail2.classList.remove("selectedThumbnail");
+		}
+		else if (thumbnail3.classList.contains("selectedThumbnail")) {
+			thumbnail3.classList.remove("selectedThumbnail");
+		}
 		document.getElementById("alt1").className = "selectedThumbnail";
 	}
 	else if (elementClicked.id == "alt2") {
 		document.getElementById("mainProductImg").src = "imgs/mainProductImg2.png";
-		document.getElementById("alt2").className = "selectedThumbnail";
+		//rm boarder from previously selected img thumbnail
+		if (thumbnail1.classList.contains("selectedThumbnail")) {
+			thumbnail1.classList.remove("selectedThumbnail");
+		}
+		else if (thumbnail3.classList.contains("selectedThumbnail")) {
+			thumbnail3.classList.remove("selectedThumbnail");
+		}
+		document.getElementById("alt2").className += " selectedThumbnail";
 	}
 	else {
 		document.getElementById("mainProductImg").src = "imgs/mainProductImg3.png";
-		document.getElementById("alt3").className = "selectedThumbnail";
+		//rm boarder from previously selected img thumbnail
+		if (thumbnail2.classList.contains("selectedThumbnail")) {
+			thumbnail2.classList.remove("selectedThumbnail");
+		}
+		else if (thumbnail1.classList.contains("selectedThumbnail")) {
+			thumbnail1.classList.remove("selectedThumbnail");
+		}
+		document.getElementById("alt3").className += " selectedThumbnail";
 	}
 }
 
