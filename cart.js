@@ -10,13 +10,16 @@ show new cart item count above cart icon in menu
 */
 //global variable for cart item count
 var cartItemCount = 0;
-
+var localStorageCount = 0;
 
 //constructor for shoppingCartItem
-function shoppingCartItem (color, size, quantity) {
+function shoppingCartItem (name, color, size, quantity, price, img) {
+	this.name = name,
 	this.color = color,
 	this.size = size,
-	this.quantity = quantity
+	this.quantity = quantity,
+	this.price = price,
+	this.img = img
 }
 
 //switch picture when corresponding thumbnail is clicked
@@ -62,13 +65,11 @@ function changeMainProductImg(elementClicked) {
 	}
 }
 
-
 //check color
 function getColorSelected() {
 	var dropMenu = document.getElementById("colorDropMenu");
 	var options = dropMenu.options;
 	var selectedColor = dropMenu.selectedIndex;
-	console.log("Index: " + options[selectedColor].index + " is " + options[selectedColor].text);
 	return options[selectedColor].text;
 }
 
@@ -77,7 +78,6 @@ function getSizeSelected() {
 	var dropMenu = document.getElementById("sizeDropMenu");
 	var options = dropMenu.options;
 	var selectedSize = dropMenu.selectedIndex;
-	console.log("Index: " + options[selectedSize].index + " is " + options[selectedSize].text);
 	return options[selectedSize].text;
 }
 
@@ -86,26 +86,91 @@ function getQntySelected() {
 	var dropMenu = document.getElementById("qntyDropMenu");
 	var options = dropMenu.options;
 	var selectedQnty = dropMenu.selectedIndex;
-	console.log("Index: " + options[selectedQnty].index + " is " + options[selectedQnty].text);
 	return options[selectedQnty].text;
 }
 
-
-/*add to cart
-check what is selected for color, size, and quantity
-update main menu cart icon with quantity of items in cart*/
-function addToCart() {
-	/*console.log("getColorSel strawberry: " + getColorSelected());
-	console.log("getSizeSel tiny: " + getSizeSelected());
-	console.log("getQntySel 1: " + getQntySelected());*/
-	var color = getColorSelected();
-	var size = getSizeSelected();
-	var quantity = getQntySelected();
-	var itemAdded = new shoppingCartItem(color, size, quantity);
-
-	//update the number above cart icon in menu to reflect quantity of items added to it
+//update main menu cart icon with quantity of items in cart
+function updateCartCount(quantity) {
 	cartItemCount += parseInt(quantity);
 	document.getElementById("shoppingCartCount").innerHTML = cartItemCount;
 }
 
+
+/*add to cart
+check what is selected for color, size, and quantity*/
+function addToCart() {
+	var name = document.getElementById("detailPageName").innerText;
+	var color = getColorSelected();
+	var size = getSizeSelected();
+	var quantity = getQntySelected();
+	var price = document.getElementById("detailPagePrice").innerText;
+	var img = "imgs/p1.img";
+	console.log("price: "+price);
+	var itemAdded = new shoppingCartItem(name, color, size, quantity, price);
+
+	//update the number above cart icon in menu to reflect quantity of items added to it
+	updateCartCount(quantity);
+
+	//add item to cart dict
+	//var newCartDictItem = itemAdded;
+	//cartDict.push(itemAdded);
+	//add item to local storage
+	window.localStorage.setItem(localStorageCount, JSON.stringify(itemAdded));
+	localStorageCount += 1;
+	//populateShoppingCartPage();
+}
+
+
+//solution from https://stackoverflow.com/questions/17001961/how-to-add-drop-down-list-select-programmatically
+function addDropDownMenu(currentSelection) {
+	var allOpts = [1,2,3,4];
+	var newMenu = document.createElement("select");
+	newMenu.id = "productQuantity";
+	document.getElementById("productQuantityMenu").appendChild(newMenu);
+
+	for (var i = 0; i < allOpts.length; i++) {
+	    var option = document.createElement("option");
+	    option.value = allOpts[i];
+	    option.text = allOpts[i];
+	    newMenu.appendChild(option);
+	}
+	//set currently selected item to quantity inputted by customer from product details page
+	newMenu.options[currentSelection-1].selected = true;
+}
+
 //show new cart item in shopping cart page
+function populateShoppingCartPage() {
+	//pull all items from local storage and populate array
+	console.log(localStorageCount);
+	var lsc = window.localStorage.length
+	console.log(lsc);
+	var cartItems = []
+	for (i = 0; i < lsc; i++) {
+		var item = JSON.parse(window.localStorage.getItem(i));
+		if (item === null) {
+			break;
+		}
+		else {
+			document.getElementById("productName").innerHTML = item.name;
+			document.getElementById("productColor").innerHTML = "Color: " + item.color;
+			document.getElementById("productSize").innerHTML = "Size: " + item.size;
+			document.getElementById("productQuantityTitle").innerHTML = "Quantity:";
+			addDropDownMenu(item.quantity);
+			document.getElementById("productPrice").innerHTML = item.price;
+			document.getElementById("productEdit").innerHTML = "edit";
+			document.getElementById("slash").innerHTML = " / ";
+			document.getElementById("productDelete").innerHTML = "delete";
+			document.getElementById("productQuantityMenu").appendChild(newMenu);
+		}
+	}
+	//check if dict is empty
+	/*if (cartItems.length > 0) {
+		//populate cart with items
+		//console.log(typeof newCartItem);
+	}
+	else {
+		document.getElementById("ifEmptyPrompt").innerText = "Take a look at our amazing products!";
+	}*/
+	//if empty display prompt to go shopping
+	//if populated loop through array to display all items 
+}
