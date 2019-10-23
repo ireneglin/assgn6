@@ -111,22 +111,72 @@ function addToCart() {
 	//update the number above cart icon in menu to reflect quantity of items added to it
 	updateCartCount(quantity);
 
-	//add item to cart dict
-	//var newCartDictItem = itemAdded;
-	//cartDict.push(itemAdded);
 	//add item to local storage
 	window.localStorage.setItem(localStorageCount, JSON.stringify(itemAdded));
 	localStorageCount += 1;
-	//populateShoppingCartPage();
 }
 
+function addNewDiv(divClass, divId, divParentId) {
+	//create new div
+	var newDiv = document.createElement("div");
+	newDiv.classList.add(divClass);
+	newDiv.id = divId;
+	document.getElementById(divParentId).appendChild(newDiv);
+	console.log("addnewdiv funct - newdiv: "+newDiv.id);
+	return newDiv;
+}
 
-//solution from https://stackoverflow.com/questions/17001961/how-to-add-drop-down-list-select-programmatically
-function addDropDownMenu(currentSelection) {
+function addProductImg(parentId) {
+	var newDiv = addNewDiv("itemCheckoutPreview", "itemCheckoutPreviewImg", parentId);
+
+	//create new img element 
+	var newImg = document.createElement("img");
+	newImg.classList.add("leftImg");
+	newImg.src = "imgs/p1.png";
+	//add new img to parent div
+	document.getElementById(newDiv.id).appendChild(newImg);
+}
+
+function addProductHeader(name, parentId) {
+	var newH3 = document.createElement("h3");
+	newH3.id = "productName";
+	newH3.innerText += name;
+	document.getElementById(parentId).appendChild(newH3);
+}
+
+function addProductDetails(color, size, parentId) {
+	//var newDiv = addNewDiv("item", "cartrtxt", parentId);
+	var newPColor = document.createElement("p");
+	newPColor.className += "shoppingCartTxt";
+	newPColor.innerText += ("Color: " + color);
+	var newPSize = document.createElement("p");
+	newPSize.className += "shoppingCartTxt";
+	newPSize.innerText += ("Size: " + size);
+	document.getElementById(parentId).appendChild(newPColor);
+	document.getElementById(parentId).appendChild(newPSize);
+}
+
+function addProductPrice(price, parentId) {
+	var newH3 = document.createElement("h3");
+	newH3.id = "productPrice";
+	newH3.className += "shoppingCartPrice";
+	newH3.innerText += price;
+	document.getElementById(parentId).appendChild(newH3);
+}
+
+function addDropDownMenu(currentSelection, parentId) {
+	//add label for menu
+	var newLabel = document.createElement("label");
+	newLabel.className += "shoppingCartTxt";
+	newLabel.id = "productQuantityTitle";
+	newLabel.innerText = "Quantity: ";
+	document.getElementById(parentId).appendChild(newLabel);
+
+	//add selector drop down menu
 	var allOpts = [1,2,3,4];
 	var newMenu = document.createElement("select");
 	newMenu.id = "productQuantity";
-	document.getElementById("productQuantityMenu").appendChild(newMenu);
+	document.getElementById(parentId).appendChild(newMenu);
 
 	for (var i = 0; i < allOpts.length; i++) {
 	    var option = document.createElement("option");
@@ -137,6 +187,32 @@ function addDropDownMenu(currentSelection) {
 	//set currently selected item to quantity inputted by customer from product details page
 	newMenu.options[currentSelection-1].selected = true;
 }
+
+function addProductEditDel(parentId) {
+	//new p 
+	var newP = document.createElement("p");
+	newP.className += "shoppingCartTxt";
+	newP.id = "shoppingCartTxtId"
+	document.getElementById(parentId).appendChild(newP);
+
+	//new a for edit
+	var newAEdit = document.createElement("a");
+	newAEdit.className += "editDeleteOptions";
+	newAEdit.id = "productEdit";
+	newAEdit.innerHTML += "Edit";
+	newAEdit.href = "dogHarness.html";
+	//new a for delete
+	var newADel = document.createElement("a");
+	newADel.className += "editDeleteOptions";
+	newADel.id = "productDelete";
+	newADel.innerHTML += "Delete";
+	newADel.href = "#";
+
+	document.getElementById(newP.id).appendChild(newAEdit);
+	document.getElementById(newP.id).innerHTML += " / ";
+	document.getElementById(newP.id).appendChild(newADel);
+}
+
 
 //show new cart item in shopping cart page
 function populateShoppingCartPage() {
@@ -151,16 +227,17 @@ function populateShoppingCartPage() {
 			break;
 		}
 		else {
-			document.getElementById("productName").innerHTML = item.name;
-			document.getElementById("productColor").innerHTML = "Color: " + item.color;
-			document.getElementById("productSize").innerHTML = "Size: " + item.size;
-			document.getElementById("productQuantityTitle").innerHTML = "Quantity:";
-			addDropDownMenu(item.quantity);
-			document.getElementById("productPrice").innerHTML = item.price;
-			document.getElementById("productEdit").innerHTML = "edit";
-			document.getElementById("slash").innerHTML = " / ";
-			document.getElementById("productDelete").innerHTML = "delete";
-			document.getElementById("productQuantityMenu").appendChild(newMenu);
+			addNewDiv("row", "cartRow" + i, "cartMainInfo");
+			addProductImg("cartRow" + i);
+
+			addNewDiv("item", "cartrtxt", "cartRow" + i);
+			addProductHeader(item.name, "cartrtxt");
+			addProductDetails(item.color, item.size, "cartrtxt");
+
+			addNewDiv("scQnty", "scQntyInfo", "cartRow" + i);
+			addProductPrice(item.price, "scQntyInfo");
+			addDropDownMenu(item.quantity, "scQntyInfo");
+			addProductEditDel("scQntyInfo");
 		}
 	}
 	//check if dict is empty
