@@ -262,6 +262,11 @@ h4 {
 	margin: 0px 0px 15px;
 }
 
+#detailPagePriceId1 {
+	float: left;
+}
+
+
 .mainInfo {
 	font-family: 'Open Sans';
 }

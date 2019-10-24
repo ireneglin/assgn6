@@ -103,9 +103,8 @@ function addToCart() {
 	var color = getColorSelected();
 	var size = getSizeSelected();
 	var quantity = getQntySelected();
-	var price = document.getElementById("detailPagePrice").innerText;
+	var price = document.getElementById("detailPagePriceId2").innerText;
 	var img = "imgs/p1.img";
-	console.log("price: "+price);
 	var itemAdded = new shoppingCartItem(name, color, size, quantity, price);
 
 	//update the number above cart icon in menu to reflect quantity of items added to it
@@ -156,11 +155,13 @@ function addProductDetails(color, size, parentId) {
 	document.getElementById(parentId).appendChild(newPSize);
 }
 
-function addProductPrice(price, parentId) {
+function addProductPrice(price, quantity, parentId) {
 	var newH3 = document.createElement("h3");
 	newH3.id = "productPrice";
 	newH3.className += "shoppingCartPrice";
-	newH3.innerText += price;
+	newH3.innerText += ("$" + (parseInt(price)*parseInt(quantity)) + ".00");
+	console.log("price: "+price);
+	console.log("qnty: "+parseInt(quantity));
 	document.getElementById(parentId).appendChild(newH3);
 }
 
@@ -235,7 +236,7 @@ function populateShoppingCartPage() {
 			addProductDetails(item.color, item.size, "cartrtxt");
 
 			addNewDiv("scQnty", "scQntyInfo", "cartRow" + i);
-			addProductPrice(item.price, "scQntyInfo");
+			addProductPrice(item.price, item.quantity, "scQntyInfo");
 			addDropDownMenu(item.quantity, "scQntyInfo");
 			addProductEditDel("scQntyInfo");
 		}
