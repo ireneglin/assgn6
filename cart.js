@@ -11,6 +11,8 @@ show new cart item count above cart icon in menu
 //global variable for cart item count
 var cartItemCount = 0;
 var localStorageCount = 0;
+//global variable for subtotal calculation in cart.html page
+var cartSubtotal = 0;
 
 //constructor for shoppingCartItem
 function shoppingCartItem (name, color, size, quantity, price, img) {
@@ -115,25 +117,63 @@ function addToCart() {
 	localStorageCount += 1;
 }
 
+function calcSubtotal(variable, operator) {
+	var num = parseInt(variable);
+	console.log("type of num: "+typeof num);
+	console.log("num: "+num);
+	if (operator == 1) {
+		cartSubtotal += num;
+	} else {
+		cartSubtotal -= num;
+	}
+
+	updateSubtotal(cartSubtotal);
+}
+
+//rm specific item if customer clicks "delete" button on that item
+function removeShoppingCartItem(currRow, itemKey) {
+	var parentNode = document.getElementById(currRow);
+
+	while (parentNode.hasChildNodes()) {
+		console.log("child id: "+parentNode.firstChild.id)
+		if (parentNode.firstChild.classList.contains("scQnty")) {
+			var price = parentNode.firstChild.firstChild.innerHTML;
+			console.log("first first: "+price.substr(1,price.length-4))
+			calcSubtotal(price.substr(1, price.length-4), 0);
+		}
+		parentNode.removeChild(parentNode.firstChild);
+	}
+
+	var mainDiv = document.getElementById("cartMainInfo");
+	mainDiv.removeChild(parentNode);
+
+	//remove item from storage
+	//var itemKey = window.localStorage.key(i);
+	window.localStorage.removeItem(itemKey);
+	console.log("test: "+window.localStorage.length);
+
+	removeSecondCheckoutButton();
+}
+
 function addNewDiv(divClass, divId, divParentId) {
 	//create new div
 	var newDiv = document.createElement("div");
 	newDiv.classList.add(divClass);
 	newDiv.id = divId;
 	document.getElementById(divParentId).appendChild(newDiv);
-	console.log("addnewdiv funct - newdiv: "+newDiv.id);
 	return newDiv;
 }
 
 function addProductImg(parentId) {
-	var newDiv = addNewDiv("itemCheckoutPreview", "itemCheckoutPreviewImg", parentId);
+	//var newDiv = addNewDiv("itemCheckoutPreview", "itemCheckoutPreviewImg", parentId);
 
 	//create new img element 
 	var newImg = document.createElement("img");
-	newImg.classList.add("leftImg");
+	newImg.classList.add("cartleftImg");
 	newImg.src = "imgs/p1.png";
 	//add new img to parent div
-	document.getElementById(newDiv.id).appendChild(newImg);
+	//document.getElementById(newDiv.id).appendChild(newImg);
+	document.getElementById(parentId).appendChild(newImg);
 }
 
 function addProductHeader(name, parentId) {
@@ -160,8 +200,6 @@ function addProductPrice(price, quantity, parentId) {
 	newH3.id = "productPrice";
 	newH3.className += "shoppingCartPrice";
 	newH3.innerText += ("$" + (parseInt(price)*parseInt(quantity)) + ".00");
-	console.log("price: "+price);
-	console.log("qnty: "+parseInt(quantity));
 	document.getElementById(parentId).appendChild(newH3);
 }
 
@@ -189,11 +227,11 @@ function addDropDownMenu(currentSelection, parentId) {
 	newMenu.options[currentSelection-1].selected = true;
 }
 
-function addProductEditDel(parentId) {
+function addProductEditDel(parentId, rowNum, parentRow, itemKey) {
 	//new p 
 	var newP = document.createElement("p");
 	newP.className += "shoppingCartTxt";
-	newP.id = "shoppingCartTxtId"
+	newP.id = "shoppingCartTxtId" + rowNum;
 	document.getElementById(parentId).appendChild(newP);
 
 	//new a for edit
@@ -208,47 +246,65 @@ function addProductEditDel(parentId) {
 	newADel.id = "productDelete";
 	newADel.innerHTML += "Delete";
 	newADel.href = "#";
+	//newADel.onclick = "removeShoppingCartItem(" + parentRow + ")";
+	//console.log("onclick: "+ newADel.onclick);
+	newADel.addEventListener("click", function () {
+		removeShoppingCartItem(parentRow, itemKey)
+	});
 
 	document.getElementById(newP.id).appendChild(newAEdit);
 	document.getElementById(newP.id).innerHTML += " / ";
 	document.getElementById(newP.id).appendChild(newADel);
 }
 
+function updateSubtotal(subtotal) {
+	document.getElementById("subtotalPrice").innerHTML = "Subtotal: $" + subtotal + ".00";
+}
 
+function removeSecondCheckoutButton() {
+	var childCount = (document.getElementById("cartMainInfo").childElementCount - 1);
+	console.log("count: "+childCount)
+
+	if (childCount < 3) {
+		document.getElementById("secCheckoutButton").style.display = "none";
+	}
+}
+
+
+	
 //show new cart item in shopping cart page
 function populateShoppingCartPage() {
-	//pull all items from local storage and populate array
-	console.log(localStorageCount);
 	var lsc = window.localStorage.length
-	console.log(lsc);
-	var cartItems = []
+	console.log("lsc: "+lsc)
+	//check if storage is empty
 	for (i = 0; i < lsc; i++) {
 		var item = JSON.parse(window.localStorage.getItem(i));
+		var itemKey = window.localStorage.key(i);
 		if (item === null) {
 			break;
-		}
-		else {
+		} else {
+			//each new div serves as element in flex box
+			//new product img item
 			addNewDiv("row", "cartRow" + i, "cartMainInfo");
 			addProductImg("cartRow" + i);
 
-			addNewDiv("item", "cartrtxt", "cartRow" + i);
-			addProductHeader(item.name, "cartrtxt");
-			addProductDetails(item.color, item.size, "cartrtxt");
+			//new name and details item
+			addNewDiv("item", "cartrtxt" + i, "cartRow" + i);
+			addProductHeader(item.name, "cartrtxt" + i);
+			addProductDetails(item.color, item.size, "cartrtxt" + i);
 
-			addNewDiv("scQnty", "scQntyInfo", "cartRow" + i);
-			addProductPrice(item.price, item.quantity, "scQntyInfo");
-			addDropDownMenu(item.quantity, "scQntyInfo");
-			addProductEditDel("scQntyInfo");
+			//new price, quantity, and edit/delete item
+			addNewDiv("scQnty", "scQntyInfo" + i, "cartRow" + i);
+			addProductPrice(item.price, item.quantity, "scQntyInfo" + i);
+			addDropDownMenu(item.quantity, "scQntyInfo" + i);
+			addProductEditDel("scQntyInfo" + i, i, "cartRow" + i, itemKey);
+
+			//update cartsubtotal number and display
+			calcSubtotal(parseInt(item.price)*parseInt(item.quantity), 1);
+			updateSubtotal(cartSubtotal);
 		}
 	}
-	//check if dict is empty
-	/*if (cartItems.length > 0) {
-		//populate cart with items
-		//console.log(typeof newCartItem);
-	}
-	else {
-		document.getElementById("ifEmptyPrompt").innerText = "Take a look at our amazing products!";
-	}*/
-	//if empty display prompt to go shopping
-	//if populated loop through array to display all items 
+	removeSecondCheckoutButton();
 }
+
+

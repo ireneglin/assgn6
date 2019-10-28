@@ -365,8 +365,13 @@ div.rev p {
 	max-height: 200px;
 }
 
-div.user img.leftImg, .itemCheckoutPreview img.leftImg {
-	padding: 0 40px 0px 0px;
+div.user img.leftImg {
+	padding: 0px 40px 0px 0px;
+}
+
+.cartleftImg  {
+	padding: 0px 40px 0px 0px;
+
 }
 
 .leftpImg {
@@ -416,7 +421,7 @@ a.active {
 	margin-right: 178px;
 }
 
-.allCartItems {
+#allCartItems {
 	width: 800px;
 	margin-right: 300px !important;
 	margin-left: 178px !important;
@@ -443,7 +448,7 @@ div.item p {
 	margin-right: 178px;
 }
 
-h4.subtotalPrice{
+h4#subtotalPrice{
 	font-size: 25px;
 }
 
