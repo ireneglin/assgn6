@@ -3,6 +3,8 @@ PUI Assignment 6
 
 https://ireneglin.github.io/assgn6/
 
+Task supported: Buying Dog Harness
+
 6A JS functionalities:
 product details page (dogHarness.html) reflects user changes while editing item options and adding to cart
 
